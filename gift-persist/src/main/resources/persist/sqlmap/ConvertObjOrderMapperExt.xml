@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.datai.gift.persist.mapper.ConvertObjOrderMapperExt">
+
+    <select id="findAndLockConvertObjOrderById" resultMap="BaseResultMap" >
+        SELECT
+          <include refid="Base_Column_List"/>
+        FROM convert_obj_order WHERE CONVERT_OBJ_ORDER_ID = #{convertObjOrderId} FOR UPDATE
+
+    </select>
+
+    <select id="queryConvertObjOrderLimitNum" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        SELECT
+          <include refid="Base_Column_List"/>
+        FROM
+          convert_obj_order
+        <include refid="params"/>
+    </select>
+
+    <sql id="params">
+      <where>
+          <if test="num == 10">
+              CONVERT_OBJ_ID =#{convertObjId} ORDER BY SIGN_SEQ DESC LIMIT #{num}
+          </if>
+          <if test="num == 1">
+              CONVERT_OBJ_ID =#{convertObjId} ORDER BY SIGN_SEQ ASC LIMIT #{num}
+          </if>
+      </where>
+    </sql>
+
+</mapper>

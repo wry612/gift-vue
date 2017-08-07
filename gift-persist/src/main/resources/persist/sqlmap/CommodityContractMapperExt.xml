@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.datai.gift.persist.mapper.CommodityContractMapperExt">
+    <select id="queryCommodityVo" resultType="cn.datai.gift.persist.vo.commodity.CommodityVo">
+    select
+        cc.COMMODITY_CONTRACT_ID as commodityContractId,
+        cc.OPERATOR_INFO_ID as operatorInfoId,
+        cc.COMMODITY_CODE as commodityCode,
+        cc.SUBJECT_MATTER as subjectMatter,
+        cc.COMMODITY_TYPE_ID as commodityTypeId,
+        cc.COMMODITY_NAME as commodityName,
+        cc.UNIT as unit,
+        cc.UNIT_EN as unitEn,
+        cc.STANDARD_UNIT_NAME as standardUnitName,
+        cc.STANDARD_UNIT_MULTIPLE as standardUnitMultiple,
+        cc.TRADE_UNIT_MULTIPLE as tradeUnitMultiple,
+        cc.STATUS as status,
+        cc.CREATE_TIME as createTime,
+        cc.MODIFY_TIME as modifyTime,
+        cc.EXPIRE_TIME as expireTime,
+        cp.UNIT_PRICE as unitPrice,
+        cp.STANDARD_PRICE as standardPrice,
+        ct.CODE as code,
+        ct.NAME as name,
+        ct.REMARK as remark,
+        cce.PACK_TYPE as packType,
+        cce.PACK_SIZE as packSize,
+        cce.INTRO_BRIEF as introBrief,
+        cce.INTRO_DETAIL_CHAR as introDetailChar,
+        cce.INTRO_DETAIL_LINK as introDetailLink,
+        cce.ICON_URL as iconUrl,
+        cce.PIC_URL as picUrl,
+        ct.CODE as commodityTypeCode,
+        ct.NAME as typeName,
+        cce.PROPERTIES as properties
+    from COMMODITY_CONTRACT as cc,COMMODITY_PRICE as cp,COMMODITY_TYPE as ct,COMMODITY_CONTRACT_EXTEND as cce
+    WHERE cc.COMMODITY_CONTRACT_ID = cp.COMMODITY_CONTRACT_ID AND ct.COMMODITY_TYPE_ID = cc.COMMODITY_TYPE_ID AND cce.COMMODITY_CONTRACT_ID = cc.COMMODITY_CONTRACT_ID
+    </select>
+
+</mapper>
