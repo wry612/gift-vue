@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+    <context:component-scan base-package="cn.datai.gift.persist"/>
+
+    <bean id="jdbcConf" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="order" value="1"/>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="location">
+            <value>classpath:config/jdbc.properties</value>
+        </property>
+    </bean>
+
+
+
+    <bean id="druid-statFilter" class="com.alibaba.druid.filter.stat.StatFilter"></bean>
+    <bean id="druid-logFilter" class="com.alibaba.druid.filter.logging.Slf4jLogFilter">
+        <property name="dataSourceLogEnabled" value="true"/>
+        <property name="connectionLogEnabled" value="true"/>
+        <property name="connectionLogErrorEnabled" value="true"/>
+        <property name="statementLogEnabled" value="true"/>
+        <property name="statementLogErrorEnabled" value="true"/>
+    </bean>
+
+
+    <bean id="duridDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <!-- 集群应用中，可以使用该配置远程调用统一配置信息 -->
+        <!-- <property name="connectionProperties" value="config.file=http://127.0.0.1/druid-pool.properties" />  -->
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <!-- <property name="connectionProperties" value="config.decrypt=true" /> -->
+        <!-- 配置初始化大小、最小、最大 -->
+        <property name="initialSize" value="${jdbc.initialSize}"/>
+        <property name="minIdle" value="${jdbc.minIdle}"/>
+        <property name="maxActive" value="${jdbc.maxActive}"/>
+
+        <!-- 配置获取连接等待超时的时间 -->
+        <property name="maxWait" value="${jdbc.maxWait}"/>
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis}"/>
+
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="${jdbc.minEvictableIdleTimeMillis}"/>
+
+        <property name="validationQuery" value="${jdbc.validationQuery}"/>
+        <property name="testWhileIdle" value="${jdbc.testWhileIdle}"/>
+        <property name="testOnBorrow" value="${jdbc.testOnBorrow}"/>
+        <property name="testOnReturn" value="${jdbc.testOnReturn}"/>
+
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小  如果用Oracle，则把poolPreparedStatements配置为true，mysql可以配置为false。-->
+        <property name="poolPreparedStatements" value="${jdbc.poolPreparedStatements}"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize"
+                  value="${jdbc.maxPoolPreparedStatementPerConnectionSize}"/>
+
+        <!-- 配置监控统计拦截的filters -->
+        <property name="filters" value="${jdbc.filters}"/>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="cn.datai.gift.persist.mapper" />
+        <!-- optional unless there are multiple session factories defined -->
+        <!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean"/>-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+    <!-- mybatis文件配置，扫描所有mapper文件 -->
+    <!-- beware that persist.mapper-config.xml is not needed if you use injected mappers -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" lazy-init="false">
+        <property name="dataSource" ref="duridDataSource"></property>
+        <property name="configLocation" value="classpath:sqlmap-config.xml"></property>
+        <!-- mapper和resultmap配置路径 -->
+        <property name="mapperLocations">
+            <list>
+                <!--表示在sqlmap包或以下所有目录中所有文件 -->
+                <value>classpath*:persist/sqlmap/*.xml</value>
+            </list>
+        </property>
+    </bean>
+
+
+
+
+
+</beans>
