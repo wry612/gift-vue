@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<classPathEntry
+			location="C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\5.1.31\mysql-connector-java-5.1.31.jar" />
+
+
+	<context id="managementTables" targetRuntime="MyBatis3" defaultModelType="flat">
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+		<!--<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />-->
+		<plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+		<commentGenerator>
+			<property name="suppressAllComments" value="false" />
+			<property name="suppressDate" value="false" />
+			<property name="addRemarkComments" value="true"/>
+			<property name="dateFormat" value="true"/>
+		</commentGenerator>
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+						connectionURL="jdbc:mysql://192.168.10.134:3306/gift" userId="root" password="123456" />
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- generate Model -->
+		<javaModelGenerator targetPackage="cn.datai.gift.persist.po" targetProject="E:\Workspaces\intellij\gift-convert-obj\gift-persist\src\main\java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+			<property name="rootInterface" value="java.io.Serializable"/>
+		</javaModelGenerator>
+
+		<!-- generate xml -->
+		<sqlMapGenerator targetPackage="persist.sqlmap" targetProject="E:\Workspaces\intellij\gift-convert-obj\gift-persist\src\main\resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- generate Mapper -->
+		<javaClientGenerator type="XMLMAPPER" targetPackage="cn.datai.gift.persist.mapper"  targetProject="E:\Workspaces\intellij\gift-convert-obj\gift-persist\src\main\java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<table schema="" tableName="activity_present">
+			<generatedKey column="ACTIVITY_PRESENT_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="advertisement">
+			<generatedKey column="ADVERTISEMENT_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="broker_info">
+		</table>
+
+		<table schema="" tableName="COMMODITY_ALLOT_APPLY">
+			<generatedKey column="COMMODITY_ALLOT_APPLY" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="COMMODITY_CONTRACT">
+			<generatedKey column="COMMODITY_CONTRACT_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="COMMODITY_CONTRACT_EXTEND">
+		</table>
+
+		<table schema="" tableName="COMMODITY_FLOW_RECORD">
+			<generatedKey column="COMMODITY_FLOW_RECORD_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="COMMODITY_GIFT_DONATION_DETAIL">
+			<generatedKey column="COMMODITY_GIFT_DONATION_DETAIL_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="COMMODITY_GIFT_INFO">
+			<generatedKey column="COMMODITY_GIFT_INFO_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="COMMODITY_PRICE">
+		</table>
+
+		<table schema="" tableName="COMMODITY_PRICE_HISTORY">
+			<generatedKey column="COMMODITY_PRICE_HISTORY_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="COMMODITY_TYPE">
+			<generatedKey column="COMMODITY_TYPE_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="convert_obj">
+			<generatedKey column="CONVERT_OBJ_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="convert_obj_flow_record">
+			<generatedKey column="CONVERT_OBJ_FLOW_RECORD_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="convert_obj_order">
+			<generatedKey column="CONVERT_OBJ_ORDER_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="convert_rule">
+		</table>
+
+		<table schema="" tableName="COUPON">
+			<generatedKey column="COUPON_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="COUPON_DETAIL">
+			<generatedKey column="COUPON_DETAIL_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="COUPON_HISTORY">
+			<generatedKey column="COUPON_HISTORY_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="COUPON_TYPE">
+			<generatedKey column="COUPON_TYPE_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="DELIVERY_ORDER">
+			<generatedKey column="DELIVERY_ORDER_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="EXPRESS_INFO">
+			<generatedKey column="EXPRESS_INFO_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="EXPRESS_COMPANY">
+			<generatedKey column="EXPRESS_COMPANY_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="GIFT_ACCOUNT">
+			<generatedKey column="GIFT_ACCOUNT_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="MCH_PAY_RESULT_WX">
+		</table>
+
+		<table schema="" tableName="MCH_PAY_WX">
+		</table>
+
+		<table schema="" tableName="MEMBER_INFO">
+			<generatedKey column="MEMBER_INFO_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="OPERATOR_INFO">
+			<generatedKey column="OPERATOR_INFO_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="OPERATOR_RELT_GIFT_ACCOUNT">
+		</table>
+
+		<table schema="" tableName="PAY_DETAIL_WX">
+			<generatedKey column="PAY_DETAIL_WX_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+		<table schema="" tableName="PAY_INFO">
+			<generatedKey column="PAY_INFO_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="PAY_ORDER_WX">
+		</table>
+
+		<table schema="" tableName="REFUND_ORDER_WX">
+		</table>
+
+		<table schema="" tableName="SPEC_USER_INFO">
+		</table>
+
+		<table schema="" tableName="SYSTEM_PARAM">
+			<generatedKey column="SYSTEM_PARAM_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="TRADE_ORDER">
+			<generatedKey column="TRADE_ORDER_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="USER_BIZ_BRIEF">
+			<generatedKey column="USERL_BIZ_BRIEF_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="USER_DELIVERY_INFO">
+			<generatedKey column="USER_DELIVERY_INFO_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="USER_INFO">
+			<generatedKey column="USER_INFO_ID" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="" tableName="USER_RELT_GIFT_ACCOUNT">
+		</table>
+
+		<table schema="" tableName="USER_WX_INFO">
+		</table>
+
+		<table schema="" tableName="USER_WX_RELT">
+		</table>
+	</context>
+</generatorConfiguration>
