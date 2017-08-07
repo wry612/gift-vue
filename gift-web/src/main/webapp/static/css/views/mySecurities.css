@@ -1,0 +1,70 @@
+.tab-box{
+    padding:0 0.24rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fafafa;
+    border-bottom: 1px solid #ccc;
+}
+.tab-box .tab-item{
+    width: 2rem;
+    padding:0.32rem 0;
+    color:#666;
+    font-size:15px;
+    text-align: center;
+}
+[data-dpr="2"] .tab-box .tab-item {
+    font-size:30px;
+}
+[data-dpr="2"] .tab-box .tab-item {
+    font-size:45px;
+}
+.tab-box .tab-item.active{
+    color:#cc0000;
+    border-bottom: 1px solid #cc0000;
+}
+.list-securities .list-item{
+    height: 2.36rem;
+    padding:0.32rem 0.2rem;
+    border-bottom: 1px solid #ccc;
+}
+.name-div .number{
+    font-size:18px;
+}
+[data-dpr="2"] .name-div .number {
+    font-size:36px;
+}
+[data-dpr="2"] .name-div .number {
+    font-size:54px;
+}
+.name-div .unit{
+    font-size:15px;
+}
+[data-dpr="2"] .name-div .unit {
+    font-size:30px;
+}
+[data-dpr="2"] .name-div .unit {
+    font-size:45px;
+}
+.from-div{
+    margin-top:0.28rem;
+    color:#666;
+}
+.date-div{
+    margin-top:0.16rem;
+    color:#666;
+    line-height: 0.56rem;
+}
+.date-div a{
+    height: 0.56rem;
+    padding: 0 0.2rem;
+    color:#cc0000;
+    line-height: 0.56rem;
+    border:1px solid #cc0000;
+    border-radius:0.08rem;
+}
+.light{
+    color:#ff3300;
+}
+
+

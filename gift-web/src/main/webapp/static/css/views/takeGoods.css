@@ -1,0 +1,105 @@
+html{background: #e5e5e5}
+.current-hold{
+    padding:0.16rem;
+    text-align: center;
+}
+.number{
+    text-align: center;
+}
+.number span{
+    font-size: 22px;
+}
+[data-dpr="2"] .number span{
+   font-size: 44px;
+}
+[data-dpr="3"] .number span{
+    font-size: 66px;
+}
+.input-box{
+    margin-top:0.4rem;
+}
+.input-inner{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top:0;
+    height: 1.2rem;
+}
+.input-inner .max-tip{
+    color:#ccc;
+    line-height: 1rem;
+}
+.input-inner input[type="tel"]{
+    position: absolute;
+    left: 0;
+    top:0;
+    width: 100%;
+    padding:.24rem 0.8rem 0.24rem 1.6rem;
+    text-align: right;
+}
+.total{
+    height: 1.32rem;
+    margin-top:0.56rem;
+    padding:0 0.4rem;
+    color:#cc0000;
+    font-size:15px;
+    text-align: center;
+    line-height: 1.32rem;
+    border-top:1px solid #ccc;
+}
+[data-dpr="2"] .total{
+    font-size:30px;
+}
+[data-dpr="3"] .total{
+    font-size:45px;
+}
+.total .total-money{
+    float: right;
+    font-size:15px;
+    font-weight:400;
+}
+[data-dpr="2"] .total .total-money{
+    font-size:30px;
+}
+[data-dpr="3"] .total .total-money{
+    font-size:45px;
+}
+.total .total-money label{
+    height: .6rem;
+    margin-top:0.2rem;
+}
+.rules{
+    padding:0 0.4rem;
+    margin-top:0.2rem;
+    text-align: right;
+}
+.rules a{
+    text-decoration: underline;
+}
+input[type="checkbox"]{
+    width: 0.4rem;
+    height:0.4rem;
+    margin-left:0.6rem;
+    margin-right:0.2rem;
+    margin-top:0.22rem;
+    background: #eee;
+    border:1px solid #ccc;
+    border-radius:0.08rem;
+}
+.tip{
+    margin-top: 0.2rem;
+    padding:0 0.4rem;
+    color: #999999;
+    text-align: right;
+}
+.icon-ok{
+    width: 0.44rem;
+    height: 0.44rem;
+    margin-right:0.12rem;
+    background: url(../../images/icon-ok.png?v=${js.version}) center no-repeat;
+    background-size: cover;
+}
+
+
+
+

@@ -1,0 +1,92 @@
+.fixed{
+    position: fixed;
+    left: 0%;
+    top:0;
+    width: 100%;
+    background: #fff;
+    z-index: 10;
+}
+.truck-info{
+    padding:0.56rem 0.4rem;
+    border-bottom: 1px solid #e5e5e5;
+}
+.truck-info img{
+    width: 1.08rem;
+}
+.truck-info .info{
+    margin-left: 0.4rem;
+    font-size:15px;
+}
+[data-dpr="2"] .truck-info .info{
+    font-size: 30px;
+}
+[data-dpr="3"] .truck-info .info{
+    font-size: 45px;
+}
+.truck-info .info div{
+    line-height: 0.56rem;
+}
+.express-wrap{
+    margin-top:3.42rem;
+    padding:0 0.4rem 0.4rem 1.32rem;
+}
+.express-wrap li{
+    position: relative;
+    padding: 0.4rem 0.36rem 0.4rem 0.64rem;
+    border-bottom: 1px solid #e5e5e5;
+}
+.express-wrap .time{
+    color:#9a9a9a;
+    line-height: 0.4rem;
+}
+.express-wrap .context{
+    font-size:15px;
+    line-height: 0.52rem;
+}
+[data-dpr="2"] .express-wrap .context{
+    font-size: 30px;
+}
+[data-dpr="3"] .express-wrap .context{
+    font-size: 45px;
+}
+.express-wrap .left-process{
+    position: absolute;
+    left:-0.4rem;
+    top:0;
+    width: 2px;
+    height: 100%;
+    background: #ccc;
+}
+.express-wrap .left-process.first{
+    top:0.4rem;
+}
+.express-wrap .left-process.last{
+    height: 0.4rem;
+}
+.express-wrap .left-process .circle{
+    position: absolute;
+    left:-0.16rem;
+    top:0.4rem;
+    width: 0.32rem;
+    height: 0.32rem;
+    background: #cccccc;
+    border-radius: 100%;
+}
+.express-wrap .left-process .circle-outer{
+    position: absolute;
+    left:-0.22rem;
+    top:0;
+    width: 0.44rem;
+    height: 0.44rem;
+    background: #ffb7b7;
+    border-radius: 100%;
+}
+.express-wrap .left-process .circle-inner{
+    position: absolute;
+    left:0.06rem;
+    top:0.06rem;
+    width: 0.32rem;
+    height: 0.32rem;
+    background: #ff3300;
+    border-radius: 100%;
+}

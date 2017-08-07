@@ -1,0 +1,192 @@
+html,body{background: #fff;}
+.tea{height:100%;background: url(../../images/packet-bg1.jpg?v=${js.version}) bottom no-repeat;background-size: 100%;}
+.white-wine{height:100%;background: url(../../images/packet-bg2.png?v=${js.version}) bottom no-repeat;background-size: 100%;}
+.red-wine{height:100%;background: url(../../images/packet-bg3.png?v=${js.version}) bottom no-repeat;background-size: 100%;}
+.bg-white{
+    position: relative;
+    margin-bottom: 2.08rem;
+    padding-bottom: 1.6rem;
+}
+.current-hold{
+    padding:0.12rem 0.4rem;
+    text-align: center;
+}
+.current-number,.total-money{
+    margin-top:0.24rem;
+    padding:0.12rem 0.4rem;
+    text-align: center;
+}
+.current-number .number,.total-money .number{
+    font-size: 22px;
+    font-weight: bold;
+}
+[data-dpr="2"] .current-number .number,[data-dpr="2"] .total-money .number {
+    font-size:44px;
+}
+[data-dpr="3"] .current-number .number,[data-dpr="3"] .total-money .number {
+    font-size:66px;
+}
+.packet-tip{
+    margin-top:0.2rem;
+    padding:0 0.4rem;
+    color:#666666;
+}
+.values{
+    color:#666666;
+    text-align: center;
+}
+.values span{
+    font-size:14px;
+    font-weight: bold;
+}
+[data-dpr="2"] .values span{
+     font-size: 28px;
+ }
+[data-dpr="3"] .values span{
+    font-size: 42px;
+}
+.packet-info{
+    margin-top:1rem;
+    margin-bottom:0.4rem;
+    color:#666666;
+    text-align: center;
+}
+.set-packet{
+    width: 7.6rem;
+    height:1.24rem;
+    margin:0.44rem auto;
+    color:#fff;
+    font-size:16px;
+    line-height: 1.24rem;
+    text-align: center;
+    background: #cc0000;
+    border-radius: 0.12rem;
+}
+[data-dpr="2"] .set-packet{
+    font-size:32px;
+}
+[data-dpr="3"] .set-packet{
+    font-size:48px;
+}
+.set-packet p:first-child{
+    margin-top: 0.56rem;
+}
+.plan-title{
+    height: 0.76rem;
+    padding:0 0.4rem;
+    margin-top:0.4rem;
+    color:#999;
+    line-height: 0.76rem;
+    background: #f2f2f2;
+}
+.set-box{
+    padding:0 0.4rem;
+    margin-top:0.24rem;
+}
+.set-box .box-input{
+    float: left;
+    width: 3.84rem;
+    padding:0 0.24rem;
+    margin-right:0.4rem;
+    border:1px solid #ccc;
+}
+.box-input input{
+    width: 2.88rem;
+    font-size:18px;
+    text-align: right;
+    line-height: 1.04rem;
+    border:none;
+}
+[data-dpr="2"] .box-input input{
+    font-size:36px;
+}
+[data-dpr="3"] .box-input input{
+    font-size:54px;
+}
+.box-input span{
+    font-size: 15px;
+    line-height: 1.04rem;
+}
+[data-dpr="2"] .box-input span{
+    font-size:30px;
+}
+[data-dpr="2"] .box-input span{
+    font-size:45px;
+}
+.set-box button{
+    float: left;
+    width: 0.64rem;
+    height: 0.64rem;
+    margin-top:0.2rem;
+    color:#fff;
+    font-size:18px;
+    text-align: center;
+    line-height: 0.64rem;
+    background: #fd5120;
+    border-radius:100%;
+}
+[data-dpr="2"] .set-box button{
+    font-size:36px;
+}
+[data-dpr="3"] .set-box button{
+    font-size:54px;
+}
+.donation-title{
+    padding-top:1.12rem;
+    font-size:15px;
+    text-align: center;
+}
+[data-dpr="2"] .donation-title{
+    font-size:30px;
+}
+[data-dpr="3"] .donation-title{
+    font-size:45px;
+}
+.securities-wrap{
+    width: 8.88rem;
+    height: 4.8rem;
+    margin:0.48rem auto;
+    padding-left:3.56rem;
+    background: url(../../images/donation.png?v=${js.version}) center no-repeat;
+    background-size: cover;
+}
+.securities-wrap .packet-name{
+    padding-top:0.64rem;
+    color:#fff;
+}
+.securities-wrap .packet-detail{
+    width: 4.28rem;
+    height: 2.4rem;
+    margin-top:0.28rem;
+    padding-top:0.2rem;
+    color:#f8cb7c;
+    text-align: center;
+    border:1px solid #fd5120;
+    border-radius:0.08rem;
+}
+.securities-wrap .number{
+    font-size:45px;
+}
+[data-dpr="2"] .securities-wrap .number{
+    font-size:90px;
+}
+[data-dpr="3"] .securities-wrap .number{
+    font-size:135px;
+}
+.securities-wrap .packet-money{
+    margin-top:0.16rem;
+}
+.securities-wrap .name{
+    margin-top:0.28rem;
+    font-size: 14px;
+}
+[data-dpr="2"] .securities-wrap .name{
+    font-size:28px;
+}
+[data-dpr="3"] .securities-wrap .name{
+    font-size:42px;
+}
+.securities-wrap .packet-money{
+    margin-top:0.28rem;
+    color:#fff;
+}

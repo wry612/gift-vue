@@ -1,0 +1,75 @@
+input::-webkit-input-placeholder {
+    font-size: 15px;
+}
+[data-dpr="2"] input::-webkit-input-placeholder {
+    font-size: 30px;
+}
+
+[data-dpr="3"] input::-webkit-input-placeholder {
+    font-size: 45px;
+}
+.input-box .label{
+    font-size:12px;
+}
+[data-dpr="2"] .input-box .label{
+    font-size:24px;
+}
+[data-dpr="3"] .input-box .label{
+    font-size:36px;
+}
+.code-box{
+    height: 1.2rem;
+    margin: 0.28rem 0.4rem 0;
+}
+.code-box input{
+    width:5.6rem;
+    padding: 0 0.12rem;
+    line-height: 1.2rem;
+    border: 1px solid #ccc;
+}
+.code-box button{
+    width: 3.4rem;
+    height: 1.2rem;
+    color: #cc0000;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.2rem;
+    border:1px solid #cc0000;
+    border-radius: 0.12rem;
+}
+[data-dpr="2"] .code-box button{
+    font-size:32px;
+}
+[data-dpr="3"] .code-box button{
+    font-size:48px;
+}
+.code-box button.sending{
+    color:#ccc;
+    border:1px solid #ccc;
+}
+.code-box .input-box{
+    width: 5.36rem;
+    margin:0;
+}
+.bind-tip{
+    padding:0.4rem;
+    color:#cc0000;
+    text-align: right;
+}
+.mobile-number{
+    margin:0.8rem 0.2rem;
+    text-align: center;
+}
+.mobile-number span{
+    font-size:18px;
+}
+[data-dpr="2"] .mobile-number span{
+    font-size:36px;
+}
+[data-dpr="3"] .mobile-number span{
+    font-size:54px;
+}
+.mobile-number span.change-tip{
+    color:#cc0000;
+}

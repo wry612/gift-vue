@@ -1,0 +1,220 @@
+html{background: #f3f3f3}
+.fixed{
+    position: fixed;
+    left: 0%;
+    top:0;
+    width: 100%;
+    z-index:1;
+}
+.list-header{
+    height:1.16rem;
+    padding:0 0.4rem;
+    color:#666666;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+}
+.list-header select{
+    width: 45%;
+    box-sizing: border-box;
+}
+.list-header select:nth-child(2){
+    border-left:1px solid #ccc;
+}
+.list-header .name{
+    width: 50%;
+    text-align: left;
+    line-height: 1.16rem;
+}
+.list-header .number{
+    width: 20%;
+    text-align: right;
+    line-height: 1.16rem;
+}
+.list-header .value{
+    width: 30%;
+    text-align: right;
+    line-height: 1.16rem;
+}
+.date-wrap{
+    height: 1rem;
+    padding:0 0.4rem;
+    background:#fff;
+    border-bottom:1px solid #ccc;
+}
+.date-wrap .date-box{
+    width: 4rem;
+    height: 100%;
+    margin:0 auto;
+    font-size:15px;
+    text-align: center;
+}
+[data-dpr="2"] .date-wrap .date-box{
+    font-size:30px;
+}
+[data-dpr="3"] .date-wrap .date-box{
+    font-size:45px;
+}
+.date-wrap .date-box span{
+    line-height: 1rem;
+}
+.icon-arrow-left{
+    float: left;
+    width: 0.8rem;
+    height:100%;
+    background: url(../../images/arrow-right.png?v=${js.version}) center no-repeat;
+    background-size:0.28rem 0.52rem;
+    transform:rotate(180deg);
+    -webkit-transform: rotate(180deg);
+}
+.icon-arrow-right{
+    float: right;
+    width: 0.8rem;
+    height:100%;
+    background: url(../../images/arrow-right.png?v=${js.version}) center no-repeat;
+    background-size:0.28rem 0.52rem;
+}
+.list-container li.item-header{
+    height: 0.8rem;
+    padding:0 0.36rem;
+    color:#999;
+    line-height: 0.8rem;
+    background: #fafafa;
+    border-bottom: 1px solid #ccc;
+}
+.list-container{
+    background: #fff;
+    overflow:hidden;
+}
+.scroll{
+    height: 100%;
+    overflow: auto;
+}
+.list-container li{
+    height:1.6rem;
+    padding:0 0.4rem;
+    color:#666666;
+    font-size:13px;
+    border-bottom: 1px solid #ccc;
+}
+[data-dpr="2"] .list-container li{
+    font-size:26px;
+}
+[data-dpr="3"] .list-container li{
+    font-size:39px;
+}
+.list-container li a{
+    display: block;
+}
+.list-container .type{
+    width:0.84rem;
+    height:0.84rem;
+    margin-top:0.4rem;
+    color:#fff;
+    text-align: center;
+    line-height: 0.84rem;
+    border-radius: 100%;
+}
+.list-container .fa .type{
+    background: #cc0000;
+}
+.list-container .shou .type{
+    background: #798644;
+}
+.list-container .ti .type{
+    background: #e88338;
+}
+.list-container .mai .type{
+    background: #ffa902;
+}
+.list-container .huan .type{
+    background: #359c96;
+}
+.list-container .jiang .type{
+    background: #b879fb;
+}
+.list-container .zeng .type{
+    background: #fb8aac;
+}
+.list-container a > div:nth-child(1){
+    width: 10%;
+}
+.list-container a > div:nth-child(2){
+    width: 35%;
+    padding-left:0.28rem;
+    text-align: left;
+}
+.list-container a > div:nth-child(3){
+    width: 35%;
+    text-align: right;
+}
+.list-container a > div:nth-child(4){
+    width: 20%;
+    text-align: right;
+}
+.list-container li .name{
+    margin-top: 0.4rem;
+}
+.list-container li .name{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.list-container li .date{
+    margin-top:0.16rem;
+    color:#999;
+    font-size: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+[data-dpr="2"] .list-container li .date{
+    font-size:20px;
+}
+[data-dpr="3"] .list-container li .date{
+    font-size:30px;
+}
+.list-container li .number{
+    margin-top: 0.4rem;
+}
+.list-container li .number span{
+    font-size:14px;
+}
+[data-dpr="2"] .list-container li .number span{
+    font-size:28px;
+}
+[data-dpr="3"] .list-container li .number span{
+    font-size:42px;
+}
+.list-container li .money{
+    margin-top: 0.4rem;
+    color:#666;
+    font-size:12px;
+}
+[data-dpr="2"] .list-container li .money{
+    font-size:24px;
+}
+[data-dpr="3"] .list-container li .money{
+    font-size:36px;
+}
+.list-container li .money span{
+    font-size:14px;
+}
+[data-dpr="2"] .list-container li .money span{
+    font-size:28px;
+}
+[data-dpr="3"] .list-container li .money span{
+    font-size:42px;
+}
+.list-container li .state{
+    position: absolute;
+    right:0.4rem;
+    margin-top: 0.24rem;
+    color:#999;
+    font-size:11px;
+}
+[data-dpr="2"] .list-container li .state{
+    font-size:22px;
+}
+[data-dpr="3"] .list-container li .state{
+    font-size:33px;
+}

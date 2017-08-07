@@ -1,0 +1,82 @@
+html{background: #e5e5e5}
+.current-hold{
+    padding:0.4rem;
+    border-bottom: 1px solid #ccc;
+}
+.current-hold label{
+    margin-right:0.28rem;
+    color:#999999;
+}
+.input-box{
+    margin-bottom:0.4rem;
+}
+.input-inner{
+    position: relative;
+    width: 3.6rem;
+    height: 1rem;
+}
+.input-inner .max-tip{
+    color:#ccc;
+    line-height: 1rem;
+}
+.input-inner input[type="tel"]{
+    position: absolute;
+    left: 0;
+    top:0;
+    width: 100%;
+    text-align: right;
+}
+.total{
+    height: 0.8rem;
+    margin-top:0.2rem;
+    padding:0 0.4rem;
+}
+.total label{
+    color:#999;
+    line-height: 0.8rem;
+}
+.total span{
+    line-height: 0.8rem;
+}
+.total .total-money{
+    float: right;
+    font-size:15px;
+    font-weight:400;
+}
+[data-dpr="2"] .total .total-money{
+    font-size:30px;
+}
+[data-dpr="3"] .total .total-money{
+    font-size:45px;
+}
+.total .total-money .number{
+    font-size:30px;
+    font-weight:400;
+}
+[data-dpr="2"] .total .total-money .number{
+    font-size:60px;
+}
+[data-dpr="3"] .total .total-money .number{
+    font-size:90px;
+}
+.service-fee{
+    padding:0.2rem 0.4rem 0.4rem;
+    text-align: right;
+}
+.rules{
+    padding:0 0.4rem 0.6rem;
+    text-align: right;
+}
+.rules a{
+    text-decoration: underline;
+}
+.tip{
+    color:#9a9a9a;
+    text-align: center;
+}
+
+
+
+
+
+

@@ -1,0 +1,84 @@
+.drawed-header{
+    padding:0.4rem 0 0.32rem;
+    text-align: center;
+    border-bottom:1px solid #ccc;
+}
+.drawed-header .drawed-time{
+    font-size:15px;
+    line-height: 0.72rem;
+}
+[data-dpr="2"] .drawed-header .drawed-time{
+    font-size:30px;
+}
+[data-dpr="3"] .drawed-header .drawed-time{
+    font-size:45px;
+}
+.drawed-item{
+    padding:0.4rem 0.8rem 0.4rem 1.04rem;
+}
+.drawed-item .prize-level{
+    color:#cc0000;
+    font-size: 16px;
+    text-align: center;
+    line-height: 0.64rem;
+}
+[data-dpr="2"] .drawed-item .prize-level{
+    font-size:32px;
+}
+[data-dpr="3"] .drawed-item .prize-level{
+    font-size:48px;
+}
+.drawed-item .drawed-info{
+    margin:0.16rem 0 0.4rem;
+}
+.drawed-item .prize-num{
+    width: 1.2rem;
+    margin-right:0.12rem;
+    color:#fff;
+    text-align: center;
+    line-height: 0.4rem;
+    background: #cc0000;
+}
+.drawed-item .prize-name{
+    margin-right:0.24rem;
+    color:#999;
+    font-size:14px;
+    line-height: 0.4rem;
+}
+[data-dpr="2"] .drawed-item .prize-name{
+    font-size:28px;
+}
+[data-dpr="3"] .drawed-item .prize-name {
+    font-size: 42px;
+}
+.drawed-item ul{
+    border-top:1px solid #ccc;
+}
+.drawed-item ul li{
+    font-size:15px;
+    line-height: 1.08rem;
+    border-bottom: 1px solid #ccc;
+}
+[data-dpr="2"] .drawed-item ul li{
+    font-size:30px;
+}
+[data-dpr="3"] .drawed-item ul li {
+    font-size: 45px;
+}
+.drawed-item ul li .quan{
+    height: 1.08rem;
+    line-height: 1.08rem;
+}
+.drawed-item ul li .nick-name{
+    width: 4rem;
+    height: 1.08rem;
+    line-height: 1.08rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.drawed-item ul li img{
+    width: 0.52rem;
+    height: 0.52rem;
+    margin:0.28rem 0.12rem 0 0;
+}
