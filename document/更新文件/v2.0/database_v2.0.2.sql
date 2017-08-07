@@ -1,0 +1,17 @@
+#v2.0.2
+INSERT INTO SYSTEM_PARAM (NAME, VALUE, REMARK) VALUES ('NEED_PWD', 'false', '是否需要输入密码');
+INSERT INTO SYSTEM_PARAM (NAME, VALUE, REMARK) VALUES ('NEED_BIND', 'false', '是否需要绑定');
+
+
+
+
+
+
+
+
+
+
+
+
+
+

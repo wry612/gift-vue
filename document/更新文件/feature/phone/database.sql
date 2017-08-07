@@ -1,0 +1,1 @@
+UPDATE system_param set `VALUE` ="true" WHERE `NAME`= "NEED_BIND";
