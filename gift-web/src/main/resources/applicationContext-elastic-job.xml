@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:reg="http://www.dangdang.com/schema/ddframe/reg"
+       xmlns:job="http://www.dangdang.com/schema/ddframe/job"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.dangdang.com/schema/ddframe/reg
+                        http://www.dangdang.com/schema/ddframe/reg/reg.xsd
+                        http://www.dangdang.com/schema/ddframe/job
+                        http://www.dangdang.com/schema/ddframe/job/job.xsd
+                        ">
+   <!-- configure registry center-->
+    <reg:zookeeper id="regCenter" server-lists="${dubbo.registry.address}" namespace="gift-job-weixin"
+                   base-sleep-time-milliseconds="2000" max-sleep-time-milliseconds="4000" max-retries="30"/>
+
+
+    <job:simple id="wxJob" class="cn.datai.weixinjob.WeixinJob" registry-center-ref="regCenter"
+                cron="0 0 0-23 * * ?" sharding-total-count="1" sharding-item-parameters="0=a"
+                overwrite="true" misfire="true" monitor-port="9888"
+    />
+</beans>

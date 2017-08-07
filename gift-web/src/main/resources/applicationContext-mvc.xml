@@ -1,0 +1,217 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.3.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+
+    <!-- 激活spring的注解. -->
+    <context:annotation-config/>
+
+    <!--applicationContext 和 applicationContext-mvc 不能夸scope，要再写一次-->
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:config/*.properties</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <!-- 开启controller注解支持 -->
+    <context:component-scan base-package="cn.datai.gift.web.controller"
+                            use-default-filters="false">
+        <context:include-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation"
+                                expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>
+
+    <!-- 会自动注册了validator ConversionService -->
+    <mvc:annotation-driven enable-matrix-variables="true"
+                           content-negotiation-manager="contentNegotiationManager">
+        <!--enableMatrixVariables="true"> -->
+
+        <mvc:message-converters register-defaults="true">
+            <!-- StringHttpMessageConverter编码为UTF-8，防止乱码 -->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8"/>
+                <property name="supportedMediaTypes">
+                    <list>
+                        <bean class="org.springframework.http.MediaType">
+                            <constructor-arg index="0" value="text"/>
+                            <constructor-arg index="1" value="plain"/>
+                            <constructor-arg index="2" value="UTF-8"/>
+                        </bean>
+                        <bean class="org.springframework.http.MediaType">
+                            <constructor-arg index="0" value="*"/>
+                            <constructor-arg index="1" value="*"/>
+                            <constructor-arg index="2" value="UTF-8"/>
+                        </bean>
+                    </list>
+                </property>
+            </bean>
+
+            <!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
+            <bean id="fastJsonHttpMessageConverter"
+                  class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                        <value>text/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+
+            <bean id="xmlHttpMessageConverter" class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+                <property name="defaultCharset" value="UTF-8"/>
+                <property name="marshaller" ref="xstreamMarshaller"/>
+                <property name="unmarshaller" ref="xstreamMarshaller"/>
+                <property name="supportedMediaTypes">
+                    <list>
+                        <bean class="org.springframework.http.MediaType">
+                            <constructor-arg name="type" value="application"/>
+                            <constructor-arg name="subtype" value="xml"/>
+                            <constructor-arg name="charset" value="UTF-8"/>
+                        </bean>
+                        <bean class="org.springframework.http.MediaType">
+                            <constructor-arg name="type" value="text"/>
+                            <constructor-arg name="subtype" value="xml"/>
+                            <constructor-arg name="charset" value="UTF-8"/>
+                        </bean>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!--xstream转换-->
+    <bean id="xstreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
+        <property name="streamDriver" ref="wxXppDriver"/>
+        <property name="autodetectAnnotations" value="true"/>
+        <property name="annotatedClasses">
+            <array>
+                <value>cn.datai.gift.wxpay.bean.common.WxPayNotifyReceiver</value>
+            </array>
+        </property>
+    </bean>
+
+
+    <!-- 内容协商管理器 -->
+    <!--1、首先检查路径扩展名（如my.pdf）；2、其次检查Parameter（如my?format=pdf）；3、检查Accept Header -->
+    <bean id="contentNegotiationManager"
+          class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <!-- 扩展名至mimeType的映射,即 /user.json => application/json -->
+        <property name="favorPathExtension" value="true"/>
+        <!-- 用于开启 /userinfo/123?format=json 的支持 -->
+        <property name="favorParameter" value="true"/>
+        <property name="parameterName" value="format"/>
+        <!-- 是否忽略Accept Header -->
+        <property name="ignoreAcceptHeader" value="false"/>
+
+        <property name="mediaTypes"> <!--扩展名到MIME的映射；favorPathExtension, favorParameter是true时起作用 -->
+            <value>
+                json=application/json
+                xml=application/xml
+                xml=text/xml
+                html=text/html
+            </value>
+        </property>
+    </bean>
+
+    <!-- 静态资源映射 -->
+    <mvc:resources location="/static/" mapping="/static/**" cache-period="31556926"/>
+
+
+    <bean id="ContentNegotiatingViewResolver" class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="order" value="1"/>
+        <property name="contentNegotiationManager" ref="contentNegotiationManager"/>
+        <property name="viewResolvers">
+            <list>
+                <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+                    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+                    <property name="contentType" value="text/html"/>
+                    <property name="prefix" value="/WEB-INF/jsp/"/>
+                    <property name="suffix" value=".jsp"/>
+                </bean>
+            </list>
+        </property>
+        <property name="defaultViews">
+            <list>
+                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+                <bean class="org.springframework.web.servlet.view.xml.MarshallingView">
+                    <property name="marshaller" ref="xstreamMarshaller"/>
+                </bean>
+            </list>
+        </property>
+
+    </bean>
+
+
+    <bean class="cn.datai.gift.web.filter.DefaultExceptionHandler"/>
+    <!--自定义微信xml序列化输出-->
+    <bean id="wxXppDriver" class="cn.datai.gift.web.utils.xml.WxXppDriver">
+    </bean>
+
+
+    <aop:config proxy-target-class="true"/>
+
+    <!--<mvc:resources location="/" mapping="/**"/>-->
+
+    <mvc:interceptors>
+
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/static/**"/>
+            <mvc:exclude-mapping path="/MP_verify_8LAnLdjs11drCWec.txt"/>
+            <bean id="loginInterceptor" class="cn.datai.gift.web.plugin.interceptor.LoginInterceptor"/>
+
+        </mvc:interceptor>
+
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/static/**"/>
+            <mvc:exclude-mapping path="/MP_verify_8LAnLdjs11drCWec.txt"/>
+            <bean id="bindInterceptor" class="cn.datai.gift.web.plugin.interceptor.BindInterceptor"/>
+
+        </mvc:interceptor>
+
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/static/**"/>
+            <mvc:exclude-mapping path="/MP_verify_8LAnLdjs11drCWec.txt"/>
+            <bean id="pwdInterceptor" class="cn.datai.gift.web.plugin.interceptor.PwdInterceptor"/>
+
+        </mvc:interceptor>
+
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/static/**"/>
+            <mvc:exclude-mapping path="/MP_verify_8LAnLdjs11drCWec.txt"/>
+            <bean id="weixinJSInterceptor" class="cn.datai.gift.web.plugin.interceptor.WeixinJSInterceptor"/>
+        </mvc:interceptor>
+
+        <!--@desc 16-12-7 设置base path -->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/static/**"/>
+            <mvc:exclude-mapping path="/MP_verify_8LAnLdjs11drCWec.txt"/>
+            <bean id="setBasePathInterceptor"
+                  class="cn.datai.gift.web.plugin.interceptor.SetBasePathInterceptor"/>
+        </mvc:interceptor>
+
+    </mvc:interceptors>
+
+
+</beans>

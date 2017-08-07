@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <substitutionProperty name="log.base" value="${catalina.base}/logs/gift-web" />
+    <jmxConfigurator />
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%date %highlight(%-5level) %cyan(%logger{80}:%replace(%caller{1}){'(\bCaller.+?(?=\())|\r|\n|\s*|\t', ''}) - %msg%n</pattern>
+        </layout>
+    </appender>
+    <appender name="logfile"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Encoding>UTF-8</Encoding>
+        <File>${log.base}.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${log.base}.%d{yyyy-MM-dd}.log.zip</FileNamePattern>
+            <maxHistory>180</maxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%date %highlight(%-5level) %cyan(%logger{80}:%replace(%caller{1}){'(\bCaller.+?(?=\())|\r|\n|\s*|\t', ''}) - %msg%n</pattern>
+        </layout>
+    </appender>
+    <appender name="errorLogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Encoding>UTF-8</Encoding>
+        <File>${log.base}-error.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${log.base}-error.%d{yyyy-MM-dd}.log.zip</FileNamePattern>
+            <maxHistory>180</maxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%date %highlight(%-5level) %cyan(%logger{80}:%replace(%caller{1}){'(\bCaller.+?(?=\())|\r|\n|\s*|\t', ''}) - %msg%n</pattern>
+        </layout>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 只打印错误日志 -->
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+    <logger name="java.sql.Connection">
+        <level value="DEBUG" />
+    </logger>
+    <logger name="com.ibatis" level="DEBUG" />
+    <logger name="com.ibatis.common.jdbc.SimpleDataSource" level="DEBUG" />
+    <logger name="com.ibatis.common.jdbc.ScriptRunner" level="DEBUG" />
+    <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG" />
+    <logger name="java.sql.ResultSet">
+        <level value="DEBUG" />
+    </logger>
+    <logger name="java.sql.Statement">
+        <level value="DEBUG" />
+    </logger>
+    <logger name="java.sql.PreparedStatement">
+        <level value="DEBUG" />
+    </logger>
+    <logger>
+        <logger name="org.springframework"/>
+        <level value="DEBUG"/>
+    </logger>
+    <logger>
+        <logger name="com.squareup.okhttp"/>
+        <level value="DEBUG"/>
+    </logger>
+    <logger name="org.springframework.session.web.http.SessionRepositoryFilter.SESSION_LOGGER">
+        <level value="INFO"/>
+    </logger>
+    <root>
+        <level value="debug" />
+        <appender-ref ref="stdout" />
+        <appender-ref ref="logfile" />
+        <appender-ref ref="errorLogFile"/>
+    </root>
+</configuration>

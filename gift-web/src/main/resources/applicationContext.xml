@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.3.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util-4.3.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+       http://www.springframework.org/schema/task
+       http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+    <util:list id="propertiesLocations">
+        <value>classpath:/config/*.properties</value>
+       <!-- <value>classpath:/config/global.properties</value>
+        <value>classpath:/config/redis.properties</value>
+        <value>classpath:/config/weixin.properties</value>-->
+    </util:list>
+
+    <bean id="initProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="fileEncoding" value="UTF-8"/>
+        <property name="locations" ref="propertiesLocations"></property>
+    </bean>
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="fileEncoding" value="UTF-8"/>
+        <property name="locations" ref="propertiesLocations"></property>
+    </bean>
+
+    <context:component-scan base-package="cn.datai.gift.web">
+        <!--@desc 16-12-6 排除Controller-->
+        <context:exclude-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter type="annotation"
+                                expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>
+
+    <tx:annotation-driven transaction-manager="transactionManager" mode="proxy" proxy-target-class="true"/>
+
+    <!-- 配置事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="duridDataSource" />
+        <property name="rollbackOnCommitFailure" value="true"/>
+        <property name="nestedTransactionAllowed" value="true"/>
+    </bean>
+
+
+    <task:executor id="myExecutor" pool-size="50" keep-alive="60"  queue-capacity="1000" rejection-policy="CALLER_RUNS"/>
+
+    <task:annotation-driven executor="myExecutor"/>
+
+    <task:scheduler id="myScheduler" pool-size="10"/>
+
+
+    <!-- 付款订单状态查询（应间隔2分钟查询一次） -->
+    <task:scheduled-tasks>
+        <task:scheduled ref="weixinOrderQueryTask" method="orderQuery" fixed-rate="120000" />
+    </task:scheduled-tasks>
+
+    <!-- 退款定时查询（间隔2分钟执行一次） -->
+    <task:scheduled-tasks>
+        <task:scheduled ref="weixinRefundQueryTask" method="refundQuery" fixed-rate="120000" />
+    </task:scheduled-tasks>
+
+    <task:scheduled-tasks scheduler="myScheduler">
+    <!--红包过期退还定时任务,每天执行48次，每小时零五分和35分定点执行, 只检查过期时间在一个小时前到当前时间的区间-->
+        <task:scheduled ref="giftRefundTask" method="inOneHour" cron="0 0,10,20,30,40,50 0-23 * * *" />
+    <!--红包过期退还定时任务,每天执行2次, 12点15分和24点15分定点执行 只检查过期时间在24小时前到一个小时前的区间-->
+        <task:scheduled ref="giftRefundTask" method="inOneDay" cron="0 15 0,12 * * *" />
+
+    <!--检查超时的购买订单(间隔2分钟执行一次)-->
+        <task:scheduled ref="cancelBuyCommodityExpireTask" method="cancelTradeOrder" fixed-rate="120000" />
+
+    <!--检查超时的提货订单(间隔2分钟执行一次)-->
+        <task:scheduled ref="cancelDeliveryInfoExpireTask" method="cancelDeliveryInfo" fixed-rate="120000" />
+    </task:scheduled-tasks>
+
+
+    <import resource="classpath:applicationContext-redis.xml"/>
+    <import resource="classpath:applicationContext-persist.xml"/>
+    <import resource="classpath:applicationContext-elastic-job.xml"/>
+    <import resource="classpath:applicationContext-restClient.xml"/>
+    <import resource="classpath:applicationContext-quartz.xml"/>
+
+
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+</beans>
