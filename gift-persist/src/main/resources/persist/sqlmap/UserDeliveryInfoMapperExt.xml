@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.datai.gift.persist.mapper.UserDeliveryInfoMapperExt">
+    <update id="changeDefaultStatus">
+        UPDATE USER_DELIVERY_INFO SET IS_DEFAULT = #{isDefault} WHERE USER_DELIVERY_INFO_ID = #{userDeliveryInfoId}
+    </update>
+</mapper>

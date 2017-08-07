@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.datai.gift.persist.mapper.UserInfoMapperExt" >
+    <select id="selectByTradeAccountId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM USER_INFO
+        <where>
+          USER_INFO_ID = (
+            SELECT USER_INFO_ID
+            FROM USER_RELT_GIFT_ACCOUNT
+            WHERE GIFT_ACCOUNT_ID = #{tradeAccountId}
+            LIMIT 1
+          )
+        </where>
+    </select>
+
+    <select id="findAndLockById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM USER_INFO
+        WHERE  USER_INFO_ID = #{userInfoId}
+
+    </select>
+</mapper>
