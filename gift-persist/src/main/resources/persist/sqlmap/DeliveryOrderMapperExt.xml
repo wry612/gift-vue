@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.datai.gift.persist.mapper.DeliveryOrderMapperExt">
+    <select id="findAndLockDeliveryOrderByPayInfoId" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/> from DELIVERY_ORDER WHERE INCOME_PAY_INFO = #{payInfoId} FOR UPDATE
+    </select>
+
+    <select id="findAndLockDeliveryOrderByDeliveryOrderId" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/> from DELIVERY_ORDER WHERE DELIVERY_ORDER_ID = #{deliveryOrderId} FOR UPDATE
+    </select>
+</mapper>
